@@ -13,20 +13,20 @@ body {
 #dataContainer {
     background-color:lightcoral;
     cursor: pointer;
+
     float:right;
 }
 
 .hiddenContent {
-    width:80%;
+    width:70%;
     margin:0 auto;
     z-index: 5;
     border: 3px solid black;
     position: absolute;
     top:50px;
-    left: 10%;
+    left: 15%;
     height:500px;
     display:none;
-    background-color:white;
 }
 
 #closeButton {

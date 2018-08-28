@@ -1,5 +1,5 @@
 console.log('hello world');
-
+var myInputs = [];
 
 myResponses = [
     'Yes',
@@ -18,7 +18,14 @@ submitQuestion.onclick = function () {
     var randomAnswer = myResponses[Math.floor(Math.random() * myResponses.length)]
     console.log(randomAnswer)
     var printAnswer = document.querySelector('#answer')
+    var userInput = document.querySelector('#userInput').value
+    console.log('this is the user input ' ,userInput)
     printAnswer.innerHTML = randomAnswer
+    var objectPair = {
+        userInput : randomAnswer
+    }
+    myInputs.push(objectPair)
+    console.log(myInputs); 
 }
 
 var hiddenContent = document.querySelector('.hiddenContent');
@@ -33,3 +40,4 @@ closeButton.onclick = function () {
     console.log('close button clicked');
     hiddenContent.style.display = 'none';
 }
+

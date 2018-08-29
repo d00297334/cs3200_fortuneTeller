@@ -1,27 +1,67 @@
+/* 
+font-family: 'Francois One', sans-serif;
+font-family: 'Chango', cursive;
+font-family: 'Kaushan Script', cursive;
+font-family: 'Julius Sans One', sans-serif;
+*/
+
 body {
-    background-color:lightblue;
+    background-color:#add8e6;
     font-family:sans-serif;
+    font-family: 'Francois One', sans-serif;
+    
 }
 
 .content {
     margin: 0 auto;
     background-color:white;
     height:500px;
-    width:500px;
+    width:90%;
+    padding-left:50px;
+
+}
+
+#title {
+    font-size:3rem;
+    font-family: 'Chango', cursive;
+}
+
+#prompt {
+    font-family: 'Francois One', sans-serif;  
+    font-size:1.5em;
+}
+
+input {
+    font-size:1em;
+}
+input[type=text] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
 }
 
 #dataContainer {
     background-color:lightcoral;
     cursor: pointer;
+    float:left;
+}
 
-    float:right;
+#submitQuestion {
+    background:purple;
+    color:#fff;
+    border: none;
+    margin:10px 5px;
+    padding:5px 10px;
+    font-size:1em;
+    
 }
 
 .hiddenContent {
     width:70%;
     margin:0 auto;
     z-index: 5;
-    border: 3px solid black;
+    border: none;
+    background-color:#e0e0e0;
     position: absolute;
     top:50px;
     left: 15%;
@@ -34,4 +74,14 @@ body {
     justify-content:flex-end;
     margin:5px;
     cursor: pointer;
+}
+
+.container{
+    width:90%;
+    margin: 0 auto;
+}
+
+#image {
+    width:50%;
+    float:right;
 }

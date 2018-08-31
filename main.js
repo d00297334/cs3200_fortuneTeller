@@ -49,7 +49,7 @@ submitQuestion.onclick = function () {
         }, 1000);
         //print the random answer to the screen
         printAnswer.innerHTML = randomAnswer
-    
+
     
         var listItem = document.createElement("li");
         listItem.innerHTML = userInput + ": " + randomAnswer;
@@ -58,40 +58,14 @@ submitQuestion.onclick = function () {
         errorParagraph.style.display = 'inline';
         errorParagraph.innerHTML = 'Text box can not be empty';
         errorParagraph.style.color = 'red'; 
+        document.getElementById('userInput').focus();
     }
-    
-
 }
 
-
-/*
-//when enter is clicked
-submitQuestion.onclick = function () {
-    
-        //generate random answer
-        randomAnswer = myResponses[Math.floor(Math.random() * myResponses.length)]
-        userInput = document.querySelector('userInput');
-        //display gif, then after 1 second, hide it
-        displayGif();
-        setTimeout(function() {
-            hideGif();
-        }, 1000);
-        //print the random answer to the screen
-        printAnswer.innerHTML = randomAnswer
-
-        var listItem = document.createElement("li");
-        listItem.innerHTML = userInput + ": " + randomAnswer;
-        pastQuestions.appendChild(listItem);
-        
-        console.log(myInputs);
-    } else {
-        errorParagraph.style.display = 'inline';
-        errorParagraph.innerHTML = 'Text box can not be empty';
-        errorParagraph.style.color = 'red'; 
-    }
-
-    
-*/
+document.getElementById('userInput').onclick = function () {
+    document.getElementById('userInput').value = '';
+    printAnswer.innerHTML = '';
+}
 
 
 //shows hidden data and dynamic change of title

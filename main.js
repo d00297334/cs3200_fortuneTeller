@@ -25,6 +25,10 @@ var hiddenTitle = document.querySelector('#hiddenTitle');
 //shows the smoke gif
 var displayGif = function () {
     smokeGif.style.display = 'inline';
+    imageUrl = smokeGif.src;
+    smokeGif.src = "";
+    smokeGif.src = imageUrl;
+
 }
 
 //hides the smoke gif
@@ -40,13 +44,12 @@ submitQuestion.onclick = function () {
         //generate random answer
         randomAnswer = myResponses[Math.floor(Math.random() * myResponses.length)]
         
-        console.log('user input is ', userInput)
-        console.log('random answer is ', randomAnswer)
+        
         //display gif, then after 1 second, hide it
         displayGif();
         setTimeout(function() {
             hideGif();
-        }, 1000);
+        }, 900);
         //print the random answer to the screen
         printAnswer.innerHTML = randomAnswer
 
@@ -82,7 +85,7 @@ dataButton.onclick = function () {
 
 //closes the model and hides the content
 closeButton.onclick = function () {
-    console.log('close button clicked');
+    
     hiddenContent.style.display = 'none';
 }
 

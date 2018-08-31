@@ -1,62 +1,101 @@
-console.log('hello world');
+//the link to my json data
+//https://api.myjson.com/bins/p31ik
+
+//stores the users questions and the answers
 var myInputs = [];
 
-myResponses = [
-    'It is certain',
-    'It is decidedly so',
-    'Without a doubt',
-    'Yes - definitely',
-    'You may rely on it',
-    'As I see it, yes',
-    'Most Likely',
-    'Yes',
-    'Signs point to yes',
-    'Reply hazy, try again',
-    'Ask again later',
-    'Better not tell you now',
-    'Cannot predict now',
-    'Concentrate and ask again',
-    'Don\'t count on it',
-    'My reply is no',
-    'My sources say no',
-    'Outllook not so good',
-    'Very doubtful',
-    'No'
-]
+//initial variable for my json data 
+var myResponses;
 
-var submitQuestion = document.querySelector('#submitQuestion')
+//some query selectors!
+var submitQuestion = document.querySelector('#submitQuestion');
 var errorParagraph = document.querySelector('#error');
-var userInput = document.querySelector('#userInput').value
-
-
-submitQuestion.onclick = function () {
-    if (userInput != "") {
-        //errorParagraph.style.display = 'none';
-        var randomAnswer = myResponses[Math.floor(Math.random() * myResponses.length)]
-        var printAnswer = document.querySelector('#answer')
-        var userInput = document.querySelector('#userInput').value
-        printAnswer.innerHTML = randomAnswer
-        
-        
-    } else {
-        errorParagraph.style.display = 'inline';
-        errorParagraph.innerHTML = 'Text box can not be empty';
-        errorParagraph.style.color = 'red';
-    }
-
-    
-}
-
+var userInput = document.querySelector('#userInput').value;
+var smokeGif = document.querySelector('#smokeGif');
+var randomAnswer = '';
+var printAnswer = document.querySelector('#answer');
+var userInput = document.querySelector('#userInput').value;
 var hiddenContent = document.querySelector('.hiddenContent');
 var dataButton = document.querySelector('#dataContainer');
 var closeButton = document.querySelector('#closeButton');
-dataButton.onclick = function () {
-    console.log('old answers clicked')
-    hiddenContent.style.display = 'inline';
+var pastQuestions = document.querySelector('#pastQuestions');
+
+//shows the smoke gif
+var displayGif = function () {
+    smokeGif.style.display = 'inline';
 }
 
+//hides the smoke gif
+var hideGif = function() {
+    smokeGif.style.display = 'none';
+}
+
+submitQuestion.onclick = function () {
+    //generate random answer
+    randomAnswer = myResponses[Math.floor(Math.random() * myResponses.length)]
+    userInput = document.getElementById('userInput').value;
+    console.log('user input is ', userInput)
+    console.log('random answer is ', randomAnswer)
+    //display gif, then after 1 second, hide it
+    displayGif();
+    setTimeout(function() {
+        hideGif();
+    }, 1000);
+    //print the random answer to the screen
+    printAnswer.innerHTML = randomAnswer
+
+
+    var listItem = document.createElement("li");
+    listItem.innerHTML = userInput + ": " + randomAnswer;
+    pastQuestions.appendChild(listItem);
+}
+
+
+/*
+//when enter is clicked
+submitQuestion.onclick = function () {
+    
+        //generate random answer
+        randomAnswer = myResponses[Math.floor(Math.random() * myResponses.length)]
+        userInput = document.querySelector('userInput');
+        //display gif, then after 1 second, hide it
+        displayGif();
+        setTimeout(function() {
+            hideGif();
+        }, 1000);
+        //print the random answer to the screen
+        printAnswer.innerHTML = randomAnswer
+
+        var listItem = document.createElement("li");
+        listItem.innerHTML = userInput + ": " + randomAnswer;
+        pastQuestions.appendChild(listItem);
+        
+        console.log(myInputs);
+    } else {
+        errorParagraph.style.display = 'inline';
+        errorParagraph.innerHTML = 'Text box can not be empty';
+        errorParagraph.style.color = 'red'; 
+    }
+
+    
+*/
+
+
+//shows hidden data
+dataButton.onclick = function () {
+    hiddenContent.style.display = 'inline';
+    
+}
+
+//closes the model and hides the content
 closeButton.onclick = function () {
     console.log('close button clicked');
     hiddenContent.style.display = 'none';
 }
 
+//fetch my json data from the server
+fetch('https://api.myjson.com/bins/p31ik').then( function (res) { 
+    res.json().then( function (theData) { 
+        myResponses = theData
+    }) 
+});

@@ -4,6 +4,7 @@
 //stores the users questions and the answers
 var myInputs = [];
 
+var questionCount = 0;
 //initial variable for my json data 
 var myResponses;
 
@@ -19,6 +20,7 @@ var hiddenContent = document.querySelector('.hiddenContent');
 var dataButton = document.querySelector('#dataContainer');
 var closeButton = document.querySelector('#closeButton');
 var pastQuestions = document.querySelector('#pastQuestions');
+var hiddenTitle = document.querySelector('#hiddenTitle');
 
 //shows the smoke gif
 var displayGif = function () {
@@ -31,23 +33,34 @@ var hideGif = function() {
 }
 
 submitQuestion.onclick = function () {
-    //generate random answer
-    randomAnswer = myResponses[Math.floor(Math.random() * myResponses.length)]
     userInput = document.getElementById('userInput').value;
-    console.log('user input is ', userInput)
-    console.log('random answer is ', randomAnswer)
-    //display gif, then after 1 second, hide it
-    displayGif();
-    setTimeout(function() {
-        hideGif();
-    }, 1000);
-    //print the random answer to the screen
-    printAnswer.innerHTML = randomAnswer
+    if (userInput != '') {
+        errorParagraph.style.display = 'none';
+        questionCount += 1;
+        //generate random answer
+        randomAnswer = myResponses[Math.floor(Math.random() * myResponses.length)]
+        
+        console.log('user input is ', userInput)
+        console.log('random answer is ', randomAnswer)
+        //display gif, then after 1 second, hide it
+        displayGif();
+        setTimeout(function() {
+            hideGif();
+        }, 1000);
+        //print the random answer to the screen
+        printAnswer.innerHTML = randomAnswer
+    
+    
+        var listItem = document.createElement("li");
+        listItem.innerHTML = userInput + ": " + randomAnswer;
+        pastQuestions.appendChild(listItem);
+    } else {
+        errorParagraph.style.display = 'inline';
+        errorParagraph.innerHTML = 'Text box can not be empty';
+        errorParagraph.style.color = 'red'; 
+    }
+    
 
-
-    var listItem = document.createElement("li");
-    listItem.innerHTML = userInput + ": " + randomAnswer;
-    pastQuestions.appendChild(listItem);
 }
 
 
@@ -81,8 +94,14 @@ submitQuestion.onclick = function () {
 */
 
 
-//shows hidden data
+//shows hidden data and dynamic change of title
 dataButton.onclick = function () {
+    if (questionCount > 0 ) {
+        hiddenTitle.innerHTML = 'Past Inquiries:';
+    } else {
+        hiddenTitle.innerHTML = 'Empty: enter a new question'
+    }
+    
     hiddenContent.style.display = 'inline';
     
 }
